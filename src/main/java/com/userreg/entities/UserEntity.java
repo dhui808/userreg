@@ -6,19 +6,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "user")
 public class UserEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@ApiModelProperty(notes = "The database generated User ID", name="userId",required=false,value="user id")
 	private Long userId;
+	@ApiModelProperty(notes = "The user name", name="userName",required=true,value="username")
 	private String userName;
+	@ApiModelProperty(notes = "The user first name", name="firstName",required=true,value="first name")
 	private String firstName;
+	@ApiModelProperty(notes = "The user last name", name="lastName",required=true,value="last name")
 	private String lastName;
+	@ApiModelProperty(notes = "The user telephone number", name="telephone",required=false,value="telephone number")
 	private String telephone;
+	@ApiModelProperty(notes = "The user email", name="email",required=false,value="email")
 	private String email;
+	@ApiModelProperty(notes = "The user mobile number", name="mobile",required=false,value="mobile number")
 	private String mobile;
+	@ApiModelProperty(notes = "The user address", name="address",required=true,value="user address")
 	private String address;
 	
 	public Long getUserId() {
