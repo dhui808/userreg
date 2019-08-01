@@ -27,3 +27,6 @@ Body:
     "telephone": "6476785678"
 }
 
+Swagger doc URL:
+http://localhost:8080/swagger-ui.html
+
