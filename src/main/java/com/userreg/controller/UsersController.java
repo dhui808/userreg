@@ -4,34 +4,27 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.userreg.model.User;
-import com.userreg.model.UserDeleteResponse;
-import com.userreg.model.UserRegistrationResponse;
-import com.userreg.model.UserRetrieveResponse;
-import com.userreg.model.UserUpdateResponse;
 import com.userreg.model.UsersRetrieveResponse;
+import com.userreg.service.PageableUsersService;
 import com.userreg.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Api(value = "UsersController", description = "REST Apis for handling users related operations.")
 @RestController
 public class UsersController {
-
+	
 	@Autowired
-	private UserService userService;
+	private PageableUsersService pageableUsersService;
 	
 	@ApiOperation(value = "Find all users in the System ", response = UsersRetrieveResponse.class, tags = "findAllUsers")
     @ApiResponses(value = {
@@ -41,7 +34,7 @@ public class UsersController {
 	@RequestMapping(method = RequestMethod.POST, value="/users/findAll", produces = "application/json")
 	public UsersRetrieveResponse findAllUsers() {
 		
-		List<User> users = userService.findAllUsers();
+		List<User> users = pageableUsersService.findAllUsers();
 		UsersRetrieveResponse usersResponse = new UsersRetrieveResponse();
 		usersResponse.setStatus("success");
 		usersResponse.setUsers(users);
@@ -59,7 +52,7 @@ public class UsersController {
 		
 		int number = Integer.valueOf(map.get("number"));
 		int page = Integer.valueOf(map.get("page"));
-		List<User> users = userService.findAllUsers(number, page);
+		List<User> users = pageableUsersService.findAllUsers(number, page);
 		UsersRetrieveResponse usersResponse = new UsersRetrieveResponse();
 		usersResponse.setStatus("success");
 		usersResponse.setUsers(users);
