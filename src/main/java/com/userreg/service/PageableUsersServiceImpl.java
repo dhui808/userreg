@@ -1,7 +1,11 @@
 package com.userreg.service;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -64,6 +68,38 @@ public class PageableUsersServiceImpl implements PageableUsersService {
 			user.setUsername(entity.getUsername());
 			
 			users.add(user);
+		}
+		
+		return users;
+	}
+	
+	@Override
+	public List<Map<String, String>> findAllUsers(String[] columns, int number, int page) throws RuntimeException {
+		
+		Pageable pageable = PageRequest.of(page, number, Sort.by(Sort.Direction.ASC, "id"));
+		Page<UserEntity> userEntityList = pageableUsersRepository.findAll(pageable);
+		List<Map<String, String>> users = new ArrayList<Map<String, String>>();
+		List<String> list = Arrays.asList(columns);
+		
+		for (UserEntity entity: userEntityList) {
+			Map<String, String> map = new HashMap<String, String>();
+			Field[] fields = entity.getClass().getDeclaredFields();
+			
+			for (Field field: fields) {
+				field.setAccessible(true);
+				String name = field.getName();
+				if (list.contains(name)) {
+					String value;
+					try {
+						value = (String)field.get(entity);
+					} catch (IllegalAccessException e) {
+						throw new RuntimeException();
+					}
+					map.put(name, value);
+				}
+			}
+
+			users.add(map);
 		}
 		
 		return users;
