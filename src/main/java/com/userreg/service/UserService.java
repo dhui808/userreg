@@ -1,7 +1,5 @@
 package com.userreg.service;
 
-import java.util.List;
-
 import com.userreg.model.User;
 
 public interface UserService {
@@ -13,8 +11,4 @@ public interface UserService {
 	Long update(User user);
 	
 	void deleteByUsername(String username);
-
-	List<User> findAllUsers();
-	
-	List<User> findAllUsers(int number, int page);
 }

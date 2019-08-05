@@ -1,7 +1,8 @@
 # userreg
 User Registration with Spring Boot and Docker
 
-Architecture:
+Architecture
+![Architecture](Architecture.png)
 
 Build project:
 ./mvnw install dockerfile:build
