@@ -22,14 +22,14 @@ public class UserRepositoryTest {
 		UserEntity user = new UserEntity();
 		user.setAddress("1 Yong St Toronto ON N7T2S6");
 		user.setEmail("danny.hui@accenture.com");
-		user.setFirstName("Danny");
-		user.setLastName("Hui");
+		user.setFirstname("Danny");
+		user.setLastname("Hui");
 		user.setMobile("6478804043");
 		user.setTelephone("4161234567");
-		user.setUserName("dannyhui");
+		user.setUsername("dannyhui");
 		user  = userRepository.save(user);
 
-	    assertThat(user.getUserName()).isEqualTo("dannyhui");
-	    assertThat(user.getUserId()).isGreaterThan(0);
+	    assertThat(user.getUsername()).isEqualTo("dannyhui");
+	    assertThat(user.getId()).isGreaterThan(0);
 	}
 }

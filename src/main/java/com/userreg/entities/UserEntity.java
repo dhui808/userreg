@@ -14,14 +14,14 @@ public class UserEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@ApiModelProperty(notes = "The database generated User ID", name="userId",required=false,value="user id")
-	private Long userId;
-	@ApiModelProperty(notes = "The user name", name="userName",required=true,value="username")
-	private String userName;
-	@ApiModelProperty(notes = "The user first name", name="firstName",required=true,value="first name")
-	private String firstName;
-	@ApiModelProperty(notes = "The user last name", name="lastName",required=true,value="last name")
-	private String lastName;
+	@ApiModelProperty(notes = "The database generated User ID", name="id",required=false,value="user id")
+	private Long id;
+	@ApiModelProperty(notes = "The user name", name="username",required=true,value="username")
+	private String username;
+	@ApiModelProperty(notes = "The user first name", name="firstname",required=true,value="first name")
+	private String firstname;
+	@ApiModelProperty(notes = "The user last name", name="lastname",required=true,value="last name")
+	private String lastname;
 	@ApiModelProperty(notes = "The user telephone number", name="telephone",required=false,value="telephone number")
 	private String telephone;
 	@ApiModelProperty(notes = "The user email", name="email",required=false,value="email")
@@ -31,29 +31,29 @@ public class UserEntity {
 	@ApiModelProperty(notes = "The user address", name="address",required=true,value="user address")
 	private String address;
 	
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setId(Long userId) {
+		this.id = userId;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 	public String getTelephone() {
 		return telephone;

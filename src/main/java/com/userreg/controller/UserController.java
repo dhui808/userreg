@@ -1,13 +1,22 @@
 package com.userreg.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.userreg.model.User;
+import com.userreg.model.UserDeleteResponse;
 import com.userreg.model.UserRegistrationResponse;
+import com.userreg.model.UserRetrieveResponse;
+import com.userreg.model.UserUpdateResponse;
 import com.userreg.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -37,5 +46,51 @@ public class UserController {
 		System.out.println("registerUser called - userId = " + userId);
 		
 		return userResponse;
+	}
+	
+	@ApiOperation(value = "Finds the user by username in the System ", response = UserRetrieveResponse.class, tags = "findByUsername")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/findByUsername", produces = "application/json")
+    public UserRetrieveResponse findByUsername(@RequestBody Map<String, String> map) {
+
+		String username = map.get("username");
+        User user = userService.findByUsername(username);
+        System.out.println("username:" + username);
+        System.out.println("user:" + user);
+        UserRetrieveResponse res = new UserRetrieveResponse();
+        if (null != user) {
+        	res.setStatus("success");
+        	res.setUser(user);
+        } else {
+        	res.setStatus("failed");
+        }
+        
+        return res;
+    }
+    
+	@ApiOperation(value = "Update the user in the System ", response = UserUpdateResponse.class, tags = "updateUser")
+	@RequestMapping(method = RequestMethod.POST, value="/user/update", produces = "application/json")
+	public UserUpdateResponse updateUser(@RequestBody User user) {
+		
+		Long userId = userService.update(user);
+		UserUpdateResponse userResponse = new UserUpdateResponse();
+		if (userId < 0) {
+			userResponse.setStatus("failed");
+		} else {
+			userResponse.setStatus("success");
+		}
+		userResponse.setUserId(userId);
+		System.out.println("updateUser called - userId = " + userId);
+		
+		return userResponse;
+	}
+	
+	@ApiOperation(value = "Delete the user from the System ", response = UserDeleteResponse.class, tags = "deleteUser")
+	@DeleteMapping("/user/{username}")
+	public UserDeleteResponse deleteUser(@PathVariable String username) {
+		userService.deleteByUsername(username);
+		UserDeleteResponse res = new UserDeleteResponse();
+		res.setStatus("success");
+		
+		return res;
 	}
 }
