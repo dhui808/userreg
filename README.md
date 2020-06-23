@@ -8,16 +8,16 @@ Build project:
 ./mvnw install dockerfile:build
 
 Make sure your maven settings.xml includes your Docker credentials:
-  <severs>
+    <severs>
         <server>
-          <id>docker.io</id>
-          <username>your_docker_id</username>
-          <password>your docker_password</password>
-          <configuration>
-            <email>your_email_address</email>
-          </configuration>
+            <id>docker.io</id>
+            <username>your_docker_id</username>
+            <password>your docker_password</password>
+            <configuration>
+                <email>your_email_address</email>
+            </configuration>
         </server>
-  </severs>
+    </severs>
   
 Push the image to dockerhub:
 ./mvnw dockerfile:push
