@@ -5,9 +5,11 @@ Architecture
 ![Architecture](Architecture.png)
 
 Build project:
+
 ./mvnw install dockerfile:build
 
 Make sure your maven settings.xml includes your Docker credentials:
+
     <severs>
         <server>
             <id>docker.io</id>
@@ -20,18 +22,27 @@ Make sure your maven settings.xml includes your Docker credentials:
     </severs>
   
 Push the image to dockerhub:
+
 ./mvnw dockerfile:push
+
 or
+
 docker push docker.io/dannyhui/userreg
 
 Run application:
+
 docker run -d -p 8080:8080 dannyhui/userreg
 
 Test with Postman:
+
 Create a POST request:
+
 Headers:
+
 	Content-Type: application/json
+	
 Body:
+
 {
     "userName": "marksmith",
     "firstName": "Mark",
@@ -43,8 +54,10 @@ Body:
 }
 
 Test with curl:
+
 curl -X POST -d @testdata/register1.json http://localhost:8080/user/register --header "Content-Type:application/json"
 
 Swagger doc URL:
+
 http://localhost:8080/swagger-ui.html
 
