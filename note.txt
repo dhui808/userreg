@@ -1,0 +1,9 @@
+1, Spring Boot, why we use it?
+2, OpenJDK/OracleJDK, what is the differency?
+3, PCF vs Kubernetes, why PCF is better or not?
+4, Monolithic Decomposing, How?
+5, Cloud Native/Microservices, more deep understanding.
+6, XP/Pare Programming/Experience, more understanding, how you did it before, must have
+7, TDD, Code Quality, and Code standard, Methodology, Junit and Sonarqube
+8, PCF cerification and hands-on experience
+9, MySQL Clustering, Redis for cache, and RabbitMQ
