@@ -87,3 +87,7 @@ Swagger doc URL:
 
 http://localhost:8080/userreg/swagger-ui.html
 
+Swagger JSON URL:
+http://localhost:8080/userreg/v2/api-docs
+
+
