@@ -85,5 +85,5 @@ curl -X POST -d "{\"username\":\"marksmith\",\"password\":\"Europe\"}" http://lo
 
 Swagger doc URL:
 
-http://localhost:8080/swagger-ui.html
+http://localhost:8080/userreg/swagger-ui.html
 
