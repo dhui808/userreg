@@ -3,4 +3,4 @@ target/
 logs/
 /dist
 /e2e
-**/package-lock.json
+package-lock.json
